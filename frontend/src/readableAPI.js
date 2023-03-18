@@ -114,3 +114,9 @@ export const newComment = (parentId, body, author) => {
     return fetch(url, config)
         .then(res => res.json())
 }
+
+// Comment Details
+export const getComment = (id) =>
+    fetch(`${api}/comments/${id}`, { headers })
+    .then(res => res.json())
+    .then(data => data)
