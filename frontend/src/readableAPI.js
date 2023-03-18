@@ -12,3 +12,5 @@ export const getCategories = () =>
         .then(data => data.categories)
 
 // POSTS
+export const getCategoryPosts = (category) =>
+    fetch(`${api}/${category.id}/posts`, )
