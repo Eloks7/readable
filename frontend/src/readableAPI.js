@@ -47,3 +47,20 @@ export const newPost = (post) => {
         .then(res => res.json())
 }
 // Post Details
+export const getPost = (id) =>
+    fetch(`${api}/posts/${id}`, { headers })
+        .then(res => res.json())
+        .then(data => data)
+
+// Post voting
+export const votePost = (id, voteType) => {
+    const config = {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({option: voteType})
+    }
+
+    return fetch(`${api}/posts/${id}`, config)
+        .then(res => res.json())
+        .then(data => data)
+}
