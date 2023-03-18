@@ -64,3 +64,18 @@ export const votePost = (id, voteType) => {
         .then(res => res.json())
         .then(data => data)
 }
+
+// Edit Post
+export const editPost = (id, title, body) => {
+    const config = {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({title, body})
+    }
+
+    return fetch(`${api}/posts/${id}`, config)
+        .then(res => res.json())
+        .then(data => data)
+}
+
+// Delete Post
