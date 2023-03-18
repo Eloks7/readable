@@ -79,3 +79,38 @@ export const editPost = (id, title, body) => {
 }
 
 // Delete Post
+export const deletePost = (id) => {
+    const config = {
+        method: 'DELETE',
+        headers
+    }
+
+    return fetch(`${api}/posts/${id}`, config)
+        .then(res => res.json())
+        .then(data => data)
+}
+
+// Getting comments on post
+export const getComments = (id) =>
+    fetch(`${api}/posts/${id}/comments`, { headers })
+        .then(res => res.json())
+        .then(data => data)
+
+// Comment on post
+export const newComment = (parentId, body, author) => {
+    const url = `${api}/comments`;
+    const config = {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+            id: uuidv4(),
+            timestamp: Date.now(),
+            author,
+            body,
+            parentId
+        })
+    }
+
+    return fetch(url, config)
+        .then(res => res.json())
+}
