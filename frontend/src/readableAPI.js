@@ -90,6 +90,7 @@ export const deletePost = (id) => {
         .then(data => data)
 }
 
+// COMMENTS
 // Getting comments on post
 export const getComments = (id) =>
     fetch(`${api}/posts/${id}/comments`, { headers })
@@ -120,3 +121,16 @@ export const getComment = (id) =>
     fetch(`${api}/comments/${id}`, { headers })
     .then(res => res.json())
     .then(data => data)
+
+// Voting on comment
+export const voteComment = (id, voteType) => {
+    const config = {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({option: voteType})
+    }
+
+    return fetch(`${api}/comments/${id}`, config)
+        .then(res => res.json())
+        .then(data => data)
+}
