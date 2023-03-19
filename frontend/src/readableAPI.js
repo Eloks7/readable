@@ -152,3 +152,13 @@ export const editComment = (id, body) => {
 }
 
 // Delete Comment
+export const deleteComment = (id) => {
+    const config = {
+        method: 'DELETE',
+        headers
+    }
+
+    return fetch(`${api}/comments/${id}`, config)
+        .then(res => res.json())
+        .then(data => data)
+}
