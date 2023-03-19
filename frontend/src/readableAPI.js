@@ -134,3 +134,21 @@ export const voteComment = (id, voteType) => {
         .then(res => res.json())
         .then(data => data)
 }
+
+// Edit Comment
+export const editComment = (id, body) => {
+    const config = {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({
+            body,
+            timestamp: Date.now()
+        })
+    }
+
+    return fetch(`${api}/comments/${id}`, config)
+        .then(res => res.json())
+        .then(data => data)
+}
+
+// Delete Comment
