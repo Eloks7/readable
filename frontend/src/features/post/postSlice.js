@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { getPosts, addPost } from '../../readableAPI';
+import { getPosts, addPost, deletePost, votePost, editPost, getPost } from '../../readableAPI';
 
 const initialState = {
     posts: {}
@@ -17,6 +17,30 @@ export const createPost = createAsyncThunk('post/createPost', () => {
         .post(addPost)
         .then(res => res.post)
 })
+
+export const removePost = createAsyncThunk('post/removePost', () => {
+    return axios
+        .post(deletePost)
+        .then(res => res.post)
+})
+
+export const updatePost = createAsyncThunk('post/updatePost', () => {
+    return axios
+        .post(editPost)
+        .then(res => res.post)
+})
+
+export const ratePost = createAsyncThunk('post/ratePost', () => {
+    return axios
+        .post(votePost)
+        .then(res => res.post)
+})
+
+// export const postDetails = createAsyncThunk('post/postDetails', () => {
+//     return axios
+//         .post(getPost)
+//         .then(res => res.post)
+// })
 
 const postSlice = createSlice({
     name: 'post',
