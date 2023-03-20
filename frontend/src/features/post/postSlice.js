@@ -12,7 +12,7 @@ const postSlice = createSlice({
             state.posts = action.payload
         },
         addPost: (state, action) => {
-            state.posts.push(action.payload)
+            state.posts.id = action.payload
         }
     }
 })
