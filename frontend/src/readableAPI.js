@@ -28,7 +28,7 @@ export const getPosts = () =>
         .then(data => data)
 
 // New post
-export const newPost = (post) => {
+export const addPost = (post) => {
     const url = `${api}/posts`;
     const config = {
         method: 'POST',
