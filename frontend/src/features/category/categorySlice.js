@@ -6,10 +6,21 @@ const initialState = {
     categories: {}
 }
 
-export const fetchCategories = createAsyncThunk('category/fetchCategories', () => {
-    return axios
-        .get(getCategories)
-        .then(res => res.data)
+const headers = {
+    'Accept': 'application/json',
+    'Authorization': 'JWT',
+    // 'Content-Type': 'application/json'
+}
+
+// export const fetchCategories = createAsyncThunk('category/fetchCategories', () => {
+//     return axios
+//         .get(getCategories())
+//         .then(res => res.data)
+// })
+export const fetchCategories = createAsyncThunk('post/fetchCategories', () => {
+    return fetch('http://localhost:3001/categories', { headers })
+        .then(res => res.json())
+        .then(res => res.categories)
 })
 
 const categorySlice = createSlice({
@@ -21,15 +32,15 @@ const categorySlice = createSlice({
         // }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchCategories.pending, (state) => {
-            state.categories = {}
-        })
+        // builder.addCase(fetchCategories.pending, (state) => {
+        //     state.categories = {}
+        // })
         builder.addCase(fetchCategories.fulfilled, (state, action) => {
             state.categories = action.payload
         })
-        builder.addCase(fetchCategories.rejected, (state) => {
-            state.categories = {}
-        })
+        // builder.addCase(fetchCategories.rejected, (state) => {
+        //     state.categories = {}
+        // })
     }
 })
 
