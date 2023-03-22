@@ -5,16 +5,40 @@ import { getPosts, addPost, deletePost, votePost, editPost, getPost } from '../.
 const initialState = {
     posts: {}
 }
+const headers = {
+    'Accept': 'application/json',
+    'Authorization': 'JWT',
+    // 'Content-Type': 'application/json'
+}
+// export const fetchPosts = createAsyncThunk('post/fetchPosts', () => {
+    // return axios
+    //     .get(getPosts())
+    //     .then(res => res.data)
+
+// })
 
 export const fetchPosts = createAsyncThunk('post/fetchPosts', () => {
-    return axios
-        .get(getPosts)
-        .then(res => res.data)
-})
+    return fetch('http://localhost:3001/posts', { headers })
+        .then(res => res.json())
+        // .then(res => res.data)
 
-export const createPost = createAsyncThunk('post/createPost', () => {
+
+})
+// export const fetchPosts = createAsyncThunk(
+//     'post/fetchPosts',
+//     async (p, { rejectWithValue }) => {
+//         try {
+//             const { data } = await axios.get('http://localhost:3001/posts');
+//             return data;
+//         } catch (error) {
+//             return rejectWithValue(error.message);
+//         }
+//     }
+// )
+
+export const createPost = createAsyncThunk('post/createPost', (post) => {
     return axios
-        .post(addPost)
+        .post(addPost, { post })
         .then(res => res.post)
 })
 
