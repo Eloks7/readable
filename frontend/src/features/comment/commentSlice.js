@@ -5,11 +5,20 @@ import { getComments } from '../../readableAPI';
 const initialState = {
     comments: {}
 }
-
-export const fetchComments = createAsyncThunk('comment/fetchComments', () => {
-    return axios
-        .get(getComments)
-        .then(res => res.data)
+const headers = {
+    'Accept': 'application/json',
+    'Authorization': 'JWT',
+    // 'Content-Type': 'application/json'
+}
+// export const fetchComments = createAsyncThunk('comment/fetchComments', () => {
+//     return axios
+//         .get(getComments)
+//         .then(res => res.data)
+// })
+export const fetchComments = createAsyncThunk('post/fetchComments', () => {
+    return fetch('http://localhost:3001/comments', { headers })
+        .then(res => res.json())
+        // .then(res => res.categories)
 })
 
 const commentSlice = createSlice({
