@@ -1,38 +1,30 @@
-import React, { Component, useEffect} from 'react';
+import React, { Component, useEffect } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchPosts } from './features/post/postSlice';
 import { fetchCategories } from './features/category/categorySlice';
-  import { fetchComments } from './features/comment/commentSlice';
+  // import { fetchComments } from './features/comment/commentSlice';
 
-// class App extends Component {
-//   // const dispatch = useDispatch();
-//   render() {
-//     useEffect(() => {
-//       useDispatch(fetchCategories)
-//       useDispatch(fetchPosts)
-//     }, []);
-//     return(
-//       <div>
-//         OKay
-//       </div>
-//     )
-//   }
-// }
 // function App() {
 const App = () => {
   const dispatch = useDispatch();
+  const categories = useSelector((state) => Object.keys(state.categories))
   useEffect(() => {
           dispatch(fetchCategories())
           dispatch(fetchPosts())
-          dispatch(fetchComments())
+          // dispatch(fetchComments())
         },);
   return (
     <div className="App">
       <header className="App-header">
-        Okay
+        React
       </header>
+      <ul>
+        {categories.map(category => (
+          <li key={category.path}>{category.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }
