@@ -20,7 +20,7 @@ const App = () => {
       <header className="App-header">
         React
       </header>
-      <ul>
+      <ul className="text-lg">
         {/* {Object.keys(categories).map(category => ( */}
         {categories.map(category => (
           <li key={category.name}>{category.name}</li>
