@@ -9,20 +9,21 @@ import { fetchCategories } from './features/category/categorySlice';
 // function App() {
 const App = () => {
   const dispatch = useDispatch();
-  const categories = useSelector((state) => Object.keys(state.categories))
+  const { categories } = useSelector((state) => state.categories)
   useEffect(() => {
           dispatch(fetchCategories())
           dispatch(fetchPosts())
           // dispatch(fetchComments())
-        },);
+        }, [dispatch]);
   return (
     <div className="App">
       <header className="App-header">
         React
       </header>
       <ul>
+        {/* {Object.keys(categories).map(category => ( */}
         {categories.map(category => (
-          <li key={category.path}>{category.name}</li>
+          <li key={category.name}>{category.name}</li>
         ))}
       </ul>
     </div>
