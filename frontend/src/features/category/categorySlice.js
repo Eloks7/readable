@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getCategories } from '../../readableAPI';
 
 const initialState = {
-    categories: {}
+    categories: []
 }
 
 const headers = {
