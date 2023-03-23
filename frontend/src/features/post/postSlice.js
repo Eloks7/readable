@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { getPosts, addPost, deletePost, votePost, editPost, getPost } from '../../readableAPI';
+// import axios from 'axios';
+// import { getPosts, addPost, deletePost, votePost, editPost, getPost } from '../../readableAPI';
 
 const initialState = {
-    posts: {}
+    posts: []
 }
 const headers = {
     'Accept': 'application/json',
@@ -21,8 +21,6 @@ export const fetchPosts = createAsyncThunk('post/fetchPosts', () => {
     return fetch('http://localhost:3001/posts', { headers })
         .then(res => res.json())
         // .then(res => res.data)
-
-
 })
 // export const fetchPosts = createAsyncThunk(
 //     'post/fetchPosts',
@@ -36,29 +34,29 @@ export const fetchPosts = createAsyncThunk('post/fetchPosts', () => {
 //     }
 // )
 
-export const createPost = createAsyncThunk('post/createPost', (post) => {
-    return axios
-        .post(addPost, { post })
-        .then(res => res.post)
-})
+// export const createPost = createAsyncThunk('post/createPost', (post) => {
+//     return axios
+//         .post(addPost, { post })
+//         .then(res => res.post)
+// })
 
-export const removePost = createAsyncThunk('post/removePost', () => {
-    return axios
-        .post(deletePost)
-        .then(res => res.post)
-})
+// export const removePost = createAsyncThunk('post/removePost', () => {
+//     return axios
+//         .post(deletePost)
+//         .then(res => res.post)
+// })
 
-export const updatePost = createAsyncThunk('post/updatePost', () => {
-    return axios
-        .post(editPost)
-        .then(res => res.post)
-})
+// export const updatePost = createAsyncThunk('post/updatePost', () => {
+//     return axios
+//         .post(editPost)
+//         .then(res => res.post)
+// })
 
-export const ratePost = createAsyncThunk('post/ratePost', () => {
-    return axios
-        .post(votePost)
-        .then(res => res.post)
-})
+// export const ratePost = createAsyncThunk('post/ratePost', () => {
+//     return axios
+//         .post(votePost)
+//         .then(res => res.post)
+// })
 
 // export const postDetails = createAsyncThunk('post/postDetails', () => {
 //     return axios
@@ -78,19 +76,19 @@ const postSlice = createSlice({
         // }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchPosts.pending, (state) => {
-            state.posts = {}
-        })
+        // builder.addCase(fetchPosts.pending, (state) => {
+        //     state.posts = {}
+        // })
         builder.addCase(fetchPosts.fulfilled, (state, action) => {
             state.posts = action.payload
         })
-        builder.addCase(fetchPosts.rejected, (state) => {
-            state.posts = {}
-        })
+        // builder.addCase(fetchPosts.rejected, (state) => {
+        //     state.posts = {}
+        // })
         // builder.addCase(createPost.pending, (state) => {})
-        builder.addCase(createPost.fulfilled, (state, action) => {
-            state.posts[action.payload.id] = action.payload
-        })
+        // builder.addCase(createPost.fulfilled, (state, action) => {
+        //     state.posts[action.payload.id] = action.payload
+        // })
         // builder.addCase(createPost.rejected, (state) => {})
     }
 })
