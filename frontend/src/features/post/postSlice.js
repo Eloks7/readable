@@ -22,6 +22,12 @@ export const fetchPosts = createAsyncThunk('post/fetchPosts', () => {
         .then(res => res.json())
         // .then(res => res.data)
 })
+
+export const fetchCategoryPosts = createAsyncThunk('post/fetchCategoryPosts', (category) => {
+    return fetch(`http://localhost:3001/${category}/posts`, { headers })
+        .then(res => res.json())
+        // .then(res => res.data)
+})
 // export const fetchPosts = createAsyncThunk(
 //     'post/fetchPosts',
 //     async (p, { rejectWithValue }) => {
@@ -67,14 +73,7 @@ export const fetchPosts = createAsyncThunk('post/fetchPosts', () => {
 const postSlice = createSlice({
     name: 'post',
     initialState,
-    reducers: {
-        // getPosts: (state, action) => {
-        //     state.posts = action.payload
-        // },
-        // addPost: (state, action) => {
-        //     state.posts[action.payload.id] = action.payload
-        // }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         // builder.addCase(fetchPosts.pending, (state) => {
         //     state.posts = {}
@@ -82,14 +81,12 @@ const postSlice = createSlice({
         builder.addCase(fetchPosts.fulfilled, (state, action) => {
             state.posts = action.payload
         })
+        builder.addCase(fetchCategoryPosts, (state, action) => {
+            
+        })
         // builder.addCase(fetchPosts.rejected, (state) => {
         //     state.posts = {}
         // })
-        // builder.addCase(createPost.pending, (state) => {})
-        // builder.addCase(createPost.fulfilled, (state, action) => {
-        //     state.posts[action.payload.id] = action.payload
-        // })
-        // builder.addCase(createPost.rejected, (state) => {})
     }
 })
 
