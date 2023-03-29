@@ -23,11 +23,11 @@ export const fetchPosts = createAsyncThunk('post/fetchPosts', () => {
         // .then(res => res.data)
 })
 
-export const fetchCategoryPosts = createAsyncThunk('post/fetchCategoryPosts', (category) => {
-    return fetch(`http://localhost:3001/${category}/posts`, { headers })
-        .then(res => res.json())
+// export const fetchCategoryPosts = createAsyncThunk('post/fetchCategoryPosts', (category) => {
+//     return fetch(`http://localhost:3001/${category}/posts`, { headers })
+//         .then(res => res.json())
         // .then(res => res.data)
-})
+// })
 // export const fetchPosts = createAsyncThunk(
 //     'post/fetchPosts',
 //     async (p, { rejectWithValue }) => {
