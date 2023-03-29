@@ -6,6 +6,8 @@ import { fetchPosts } from '../features/post/postSlice';
 import { fetchCategories } from '../features/category/categorySlice';
   // import { fetchComments } from './features/comment/commentSlice';
 import SideNav from './SideNav';
+import NewPost from './NewPost';
+
 // function App() {
 const App = () => {
   const dispatch = useDispatch();
@@ -18,11 +20,12 @@ const App = () => {
   return (
     <div className="App px-5 mx-auto">
       
-      {/* <ul className="text-lg text-left">
+      <ul className="text-lg text-left">
         {categories.map(category => (
           <li key={category.name}>{category.name}</li>
         ))}
-      </ul> */}
+      </ul>
+      
     </div>
   );
 }
